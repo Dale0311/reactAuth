@@ -1,8 +1,24 @@
-# React + Vite
+# setting up authentication + context
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### 1. create a AuthContext that we can wrap in our RouterProvider, and fn that returns the data from useContext
 
-Currently, two official plugins are available:
+<b>@AuthContext file</b><br/>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. c: const Context = createContext();
+2. c: export function authData{return useContext(Context)}
+3. @AuthContext component
+   c: user state object, login fn, logout fn <br/>
+   c:<br/>
+   < Context.Provider value={{user, login, logout }} ><br/>
+   {children // Outlet}<br/>
+   </ Context.Provider >
+
+### 2. Wrap the RouterProvider in AuthContext that we created
+
+<AuthProvider>
+    <RouterProvider router={router} />
+</AuthProvider>
+
+### 3. use the data in every component that we want
+
+const {user} = useContext(Context) -> Context that we created @AuthContext
