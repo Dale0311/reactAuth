@@ -5,11 +5,12 @@ import { useNavigate } from "react-router-dom";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { setUser } = authData();
+  const { login } = authData();
   const redir = useNavigate();
   function handleSubmit(e) {
     e.preventDefault();
-    setUser((user) => ({ email, password, isLoggedIn: true }));
+    // setUser((user) => ({ email, password, isLoggedIn: true }));
+    login(email, password, true);
     redir("/profile");
   }
   return (

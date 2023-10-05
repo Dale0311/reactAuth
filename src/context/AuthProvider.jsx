@@ -9,7 +9,9 @@ export function AuthContext({ children }) {
     password: "",
     isLoggedIn: false,
   });
-
-  const data = { user, setUser };
+  function login(email, password, isLoggedIn) {
+    setUser((user) => ({ email, password, isLoggedIn: isLoggedIn }));
+  }
+  const data = { user, setUser, login };
   return <Context.Provider value={data}>{children}</Context.Provider>;
 }
